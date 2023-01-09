@@ -26,12 +26,31 @@
 
 <body>
     <header>
-        <img class="logo" src="assets/html_css_js.png" alt="logo">
-        <h1>Web App</h1>
+        <h1>Guessing Game</h1>
     </header>
 
     <main>
-
+        <section class="hiding-places">
+            <div class="hiding-place" id="tree-section">
+                <img src="./assets/tree.png" />
+            </div>
+            <div class="hiding-place" id="boulder-section">
+                <img src="./assets/boulder.png" />
+            </div>
+            <div class="hiding-place" id="shed-section">
+                <img src="./assets/shed.png" />
+            </div>    
+        </section>
+        <section class="buttons">
+            <button id="tree-button">Tree</button>
+            <button id="boulder-button">Boulder</button>
+            <button id="shed-button">Shed</button>
+        </section>
+        <section class="guesses-container">
+            <h3>Correct guesses: <span id="correct-guesses">0</span></h3>
+            <h3>Incorrect guesses: <span id="incorrect-guesses">0</span></h3>
+            <h3>Total guesses: <span id="total-guesses">0</span></h3>
+        </section>
     </main>
 
 </body>

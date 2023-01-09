@@ -15,13 +15,40 @@ If you work on more than one feature at a time, you are guaranteed to multiply y
 1. **Think about how to validate each of your features according to a Definition of Done. (Hint: console.log usually helps here.)**
 1. **Consider what features _depend_ on what other features. Use this dependency logic to figure out what order to complete tasks.**
 
-Additional considerations:
+## HTML Setup
+- buttons
+    - why? let the user guess (and increase counters state)
+    - how? buttonEl.addEventListener('click', () => {})
+- 3 hiding-place images
+    - why? show the user the "correct" guess with a smiley face
+    - how? img.classList.add('face')
+- correct guesses element
+    - why? show the user the number of correct guesses
+    - how? correctEl.textContent = correctGuesses
+- incorrect guesses element
+    - why? show the user the number of incorrect guesses
+    - how? incorrectEl.textContent = incorrectGuesses
+- total games element
+    - why? show the user the number of total guesses
+    - how? totalEl.textContent = totalGuesses
 
--   Ask: which of your HTML elements need to be hard coded, and which need to be dynamically generated?
--   Consider your data model.
-    -   What kinds of objects (i.e., Dogs, Friends, Todos, etc) will you need?
-    -   What are the key/value pairs?
-    -   What arrays might you need?
-    -   What needs to live in a persistence layer?
--   Is there some state we need to initialize?
--   Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be reused?)
+## State
+- let currentHidingPlace = null;
+- let correctGuesses = 0;
+- let incorrectGuesses = 0;
+- let totalGames = 0;
+
+## Events
+user clicks on a button to make a guess
+- what happens when the user clicks?
+    - get some info (which button did the user click, and which one was correct?)
+        1) figure out which button the user clicked
+        2) come up with a random "correct" answer
+        3) compare the correct answer to whatever the user guessed
+    - update state using the new info
+        4) if they guessed correct, increment correct guesses
+        5) if they guessed incorrect, increment incorrect guesses
+        6) no matter what, incremenet total guesses
+    - update DOM with the new state
+        7) show a smiley face in the correct spot
+        8) show the new totals for correct, incorrect, and total guesses in the DOM
