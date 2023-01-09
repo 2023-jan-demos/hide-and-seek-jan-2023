@@ -16,34 +16,30 @@ const incorrectGuessesEl = document.getElementById('incorrect-guesses');
 const totalGuessesEl = document.getElementById('total-guesses');
 
 /* State */
-let currentHidingPlace = null;
 let correctGuesses = 0;
 let incorrectGuesses = 0;
 let totalGuesses = 0;
 
-// this is the behavior we get on every guess
-function handleGuess(placeTheUserClicked) { // when you call this function (cook this recipe, use this juicer) you need to supply a 'place' (just like the ingredients in our analogies)
-    treeSectionEl.classList.remove('face'); 
-    boulderSectionEl.classList.remove('face');
-    shedSectionEl.classList.remove('face');
+/* Events */
+treeButtonEl.addEventListener('click', () => {
+    handleGuess('tree');
+});
 
+shedButtonEl.addEventListener('click', () => {
+    handleGuess('shed');
+});
+
+boulderButtonEl.addEventListener('click', () => {
+    handleGuess('boulder'); // function call -- cooking the recipe
+});
+
+// this is the behavior we get on every guess
+// function declaration -- writing the recipe
+function handleGuess(placeTheUserClicked) { // when you call this function (cook this recipe, use this juicer) you need to supply a 'place' (just like the ingredients in our analogies)
+    removeClasses();
     // cool zone: whatever i write here will happen when the user clicks
 
-    //     - get some info (which button did the user click, and which one was correct?)
-    //     1) figure out which button the user clicked -- if we have a different event listener for each button, this is easy
-    //     2) come up with a random "correct" answer
-    // A
-    const places = ['tree', 'boulder', 'shed'];
-
-    // first, get a random number between 0 and 2.
-    // B
-    const index = Math.floor(Math.random() * places.length);
-
-    // then, get a random string string: tree, boulder, or shed
-    // using the random index we made just above 
-    // C
-    const correctPlace = places[index];
-
+    const correctPlace = pickRandomPlace();
     // finally, use the random string to make document.getElementById('tree-section'), 
     // using a template literal
     // D
@@ -72,21 +68,31 @@ function handleGuess(placeTheUserClicked) { // when you call this function (cook
     totalGuessesEl.textContent = totalGuesses;
 
 }
-/* Events */
-treeButtonEl.addEventListener('click', () => {
-    handleGuess('tree');
-});
 
-shedButtonEl.addEventListener('click', () => {
-    handleGuess('shed');
-});
+function removeClasses() {
+    treeSectionEl.classList.remove('face'); 
+    boulderSectionEl.classList.remove('face');
+    shedSectionEl.classList.remove('face');
+}
 
-boulderButtonEl.addEventListener('click', () => {
-    handleGuess('boulder');
-});
+function pickRandomPlace() {
+        //     - get some info (which button did the user click, and which one was correct?)
+    //     1) figure out which button the user clicked -- if we have a different event listener for each button, this is easy
+    //     2) come up with a random "correct" answer
+    // A
+    const places = ['tree', 'boulder', 'shed'];
 
+    // first, get a random number between 0 and 2.
+    // B
+    const index = Math.floor(Math.random() * places.length);
 
+    // then, get a random string string: tree, boulder, or shed
+    // using the random index we made just above 
+    // C
+    const correctPlace = places[index];
 
+    return correctPlace;
+}
 /* Display Functions */
 
 // (don't forget to call any display functions you want to run on page load!)
