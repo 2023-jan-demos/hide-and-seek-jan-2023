@@ -21,8 +21,8 @@ let correctGuesses = 0;
 let incorrectGuesses = 0;
 let totalGuesses = 0;
 
-/* Events */
-treeButtonEl.addEventListener('click', () => {
+// this is the behavior we get on every guess
+function handleGuess(placeTheUserClicked) { // when you call this function (cook this recipe, use this juicer) you need to supply a 'place' (just like the ingredients in our analogies)
     treeSectionEl.classList.remove('face'); 
     boulderSectionEl.classList.remove('face');
     shedSectionEl.classList.remove('face');
@@ -53,7 +53,7 @@ treeButtonEl.addEventListener('click', () => {
     correctSectionEl.classList.add('face');
 
     //     3) compare the correct answer to whatever the user guessed
-    if (correctPlace === 'tree') {
+    if (correctPlace === placeTheUserClicked) {
         // - update state using the new info
         //     4) if they guessed correct, increment correct guesses
         correctGuesses++;
@@ -70,7 +70,22 @@ treeButtonEl.addEventListener('click', () => {
     correctGuessesEl.textContent = correctGuesses;
     incorrectGuessesEl.textContent = incorrectGuesses;
     totalGuessesEl.textContent = totalGuesses;
+
+}
+/* Events */
+treeButtonEl.addEventListener('click', () => {
+    handleGuess('tree');
 });
+
+shedButtonEl.addEventListener('click', () => {
+    handleGuess('shed');
+});
+
+boulderButtonEl.addEventListener('click', () => {
+    handleGuess('boulder');
+});
+
+
 
 /* Display Functions */
 
